@@ -44,7 +44,6 @@ public class UserDaoJDBCImpl implements UserDao {
             pstmt.setString(2, lastName);
             pstmt.setByte(3, age);
             pstmt.executeUpdate();
-            // ✅ Сообщение теперь печатается здесь (по замечанию ментора)
             System.out.println("User с именем — " + name + " добавлен в базу данных");
         } catch (SQLException e) {
             throw new RuntimeException("Ошибка сохранения пользователя", e);
@@ -66,7 +65,6 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        // ✅ Явно перечисляем колонки (по замечанию ментора)
         String sql = "SELECT id, name, lastName, age FROM users";
         try (Connection conn = Util.getConnection();
              Statement stmt = conn.createStatement();
@@ -87,7 +85,6 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        // ✅ Только TRUNCATE, без лишнего fallback (по замечанию ментора)
         String sql = "TRUNCATE TABLE users";
         try (Connection conn = Util.getConnection();
              Statement stmt = conn.createStatement()) {
