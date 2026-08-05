@@ -1,5 +1,5 @@
 package service;
-
+import dao.UserHibernateDaoImpl;
 import dao.UserDao;
 import dao.UserDaoJDBCImpl;
 import model.User;
@@ -7,7 +7,7 @@ import model.User;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private final UserDao userDao = new UserDaoJDBCImpl();
+    private final UserDao userDao = new UserHibernateDaoImpl();
 
     @Override
     public void createUsersTable() {
